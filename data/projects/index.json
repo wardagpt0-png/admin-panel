@@ -3,8 +3,8 @@
     "id": "demo",
     "name": "موقع تجريبي",
     "password": "admin123",
-    "github_owner": "YOUR_USERNAME",
-    "github_repo": "YOUR_REPO",
-    "url": "https://your-site.vercel.app"
+    "github_owner": "wardagpt0-png",
+    "github_repo": "test-website",
+    "url": "https://test-website.vercel.app"
   }
 ]
