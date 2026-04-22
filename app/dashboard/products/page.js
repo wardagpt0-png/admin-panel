@@ -304,3 +304,4 @@ export default function ProductsPage() {
     </div>
   )
 }
+// This file was already created above
