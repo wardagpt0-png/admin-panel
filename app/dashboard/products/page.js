@@ -333,8 +333,6 @@ export default function ProductsPage() {
               <div style={{ gridColumn: '1/-1' }}>
                 <label style={lbl}>{t.f_meta}</label>
                 <input value={form.metaDescription} onChange={e => setForm(f => ({ ...f, metaDescription: e.target.value }))} maxLength={160} style={inp} />
-                <p style={{ color: form.metaDescription.length > 140 ? '#f59e0b' : '#475569', fontSize: 12, marginTop: 6, textAlign: 'left' }}>{form.metaDescription.length}/160</p>
-              </div>
                 <input value={form.labels} onChange={e => setForm(f => ({ ...f, labels: e.target.value }))} style={inp} />
               </div>
 
@@ -356,7 +354,6 @@ export default function ProductsPage() {
                     ))}
                   </div>
                 )}
-              </div>
             </div>
             </div>
 
