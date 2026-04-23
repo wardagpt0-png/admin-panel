@@ -126,28 +126,35 @@ export default function ProductsPage() {
     setError('')
   }
 
-  const handleEdit = (product) => {
-    setEditSlug(product.slug)
-    setForm({
-      title: product.title || product.name || '',
-      price: product.price?.toString() || '',
-      oldPrice: product.oldPrice?.toString() || '',
-      discountPercentage: product.discountPercentage || '',
-      description: product.description || '',
-      detailedDescription: product.detailedDescription || '',
-      metaDescription: product.metaDescription || '',
-      features: product.features || '',
-      benefits: product.benefits || '',
-      labels: Array.isArray(product.labels) ? product.labels.join(', ') : product.labels || '',
-      category: product.category || '',
-      slug: product.slug || '',
-      rating: product.rating?.toString() || '4.8',
-      reviewCount: product.reviewCount?.toString() || '50',
-      images: product.images || []
-    })
-    setMode('form')
-    setSuccess('')
-    setError('')
+  const handleEdit = async (product) => {
+    setLoading(true)
+    try {
+      const res = await fetch('/api/products?owner=' + project.github_owner + '&repo=' + project.github_repo + '&type=products&slug=' + product.slug)
+      const fullProduct = await res.json()
+      const p = fullProduct || product
+      setEditSlug(p.slug)
+      setForm({
+        title: p.title || p.name || '',
+        price: p.price?.toString() || '',
+        oldPrice: p.oldPrice?.toString() || '',
+        discountPercentage: p.discountPercentage || '',
+        description: p.description || '',
+        detailedDescription: p.detailedDescription || '',
+        metaDescription: p.metaDescription || '',
+        features: p.features || '',
+        benefits: p.benefits || '',
+        labels: Array.isArray(p.labels) ? p.labels.join(', ') : p.labels || '',
+        category: p.category || '',
+        slug: p.slug || '',
+        rating: p.rating?.toString() || '4.8',
+        reviewCount: p.reviewCount?.toString() || '50',
+        images: p.images || []
+      })
+      setMode('form')
+      setSuccess('')
+      setError('')
+    } catch(e) { setError(e.message) }
+    setLoading(false)
   }
 
   const handleDelete = async (slug) => {

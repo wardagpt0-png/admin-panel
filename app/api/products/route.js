@@ -9,7 +9,21 @@ export async function GET(req) {
     const owner = searchParams.get('owner')
     const repo = searchParams.get('repo')
     const type = searchParams.get('type') || 'products'
+    const slug = searchParams.get('slug')
 
+    // جلب منتج واحد كامل
+    if (slug) {
+      const res = await octokit.repos.getContent({ 
+        owner, repo, 
+        path: `data/${type}/${slug}.json` 
+      })
+      const content = JSON.parse(
+        Buffer.from(res.data.content, 'base64').toString()
+      )
+      return NextResponse.json(content)
+    }
+
+    // جلب القائمة
     const res = await octokit.repos.getContent({ 
       owner, repo, 
       path: `data/${type}/index.json` 
