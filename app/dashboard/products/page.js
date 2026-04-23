@@ -335,19 +335,6 @@ export default function ProductsPage() {
                 <input value={form.metaDescription} onChange={e => setForm(f => ({ ...f, metaDescription: e.target.value }))} maxLength={160} style={inp} />
                 <p style={{ color: form.metaDescription.length > 140 ? '#f59e0b' : '#475569', fontSize: 12, marginTop: 6, textAlign: 'left' }}>{form.metaDescription.length}/160</p>
               </div>
-
-              <div>
-                <label style={lbl}>{t.f_features}</label>
-                <input value={form.features} onChange={e => setForm(f => ({ ...f, features: e.target.value }))} style={inp} />
-              </div>
-
-              <div>
-                <label style={lbl}>{t.f_benefits}</label>
-                <input value={form.benefits} onChange={e => setForm(f => ({ ...f, benefits: e.target.value }))} style={inp} />
-              </div>
-
-              <div style={{ gridColumn: '1/-1' }}>
-                <label style={lbl}>{t.f_labels}</label>
                 <input value={form.labels} onChange={e => setForm(f => ({ ...f, labels: e.target.value }))} style={inp} />
               </div>
 
