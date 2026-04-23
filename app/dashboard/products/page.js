@@ -300,7 +300,7 @@ export default function ProductsPage() {
 
               <div>
                 <label style={lbl}>{t.f_category}</label>
-                <input value={form.category} onChange={e => setForm(f => ({ ...f, category: e.target.value }))} style={inp} />
+                <CategorySelector value={form.category} onChange={val => setForm(f => ({ ...f, category: val }))} lang={lang} />
               </div>
 
               <div>
@@ -320,7 +320,7 @@ export default function ProductsPage() {
 
               <div style={{ gridColumn: '1/-1' }}>
                 <label style={lbl}>{t.f_detailed}</label>
-                <RichEditor value={form.detailedDescription} onChange={val => setForm(f => ({ ...f, detailedDescription: val }))} />
+                <RichEditor value={form.detailedDescription} onChange={val => setForm(f => ({ ...f, detailedDescription: val }))} onUploadImage={async (file) => { const fd = new FormData(); fd.append("file", file); const r = await fetch("/api/upload", {method:"POST",body:fd}); return await r.json(); }} />
               </div>
 
               <div style={{ gridColumn: '1/-1' }}>
