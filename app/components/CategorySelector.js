@@ -1,7 +1,6 @@
 'use client'
-import { useState, useEffect } from 'react'
 
-const DEFAULT_CATEGORIES = [
+const CATEGORIES = [
   'Serrure intelligente',
   'Pointeuse biométrique',
   'Tourniquet tripode',
@@ -14,72 +13,19 @@ const DEFAULT_CATEGORIES = [
 ]
 
 export default function CategorySelector({ value, onChange, lang }) {
-  const [categories, setCategories] = useState(DEFAULT_CATEGORIES)
-  const [showAdd, setShowAdd] = useState(false)
-  const [newCat, setNewCat] = useState('')
-
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem('custom_categories')
-      if (saved) {
-        const custom = JSON.parse(saved)
-        setCategories([...DEFAULT_CATEGORIES, ...custom])
-      }
-    } catch {}
-  }, [])
-
-  const addCategory = () => {
-    if (!newCat.trim()) return
-    const updated = [...categories, newCat.trim()]
-    setCategories(updated)
-    const custom = updated.filter(c => !DEFAULT_CATEGORIES.includes(c))
-    localStorage.setItem('custom_categories', JSON.stringify(custom))
-    onChange(newCat.trim())
-    setNewCat('')
-    setShowAdd(false)
-  }
-
   const inp = {
     background: 'rgba(15,23,42,0.8)', border: '1.5px solid rgba(99,102,241,0.25)',
     color: '#f8fafc', borderRadius: 12, padding: '13px 18px', fontSize: 15,
-    outline: 'none', width: '100%', fontFamily: 'Cairo,sans-serif', boxSizing: 'border-box'
+    outline: 'none', width: '100%', fontFamily: 'Cairo,sans-serif', boxSizing: 'border-box',
+    cursor: 'pointer'
   }
 
   return (
-    <div>
-      <select value={value} onChange={e => {
-        if (e.target.value === '__new__') { setShowAdd(true); return }
-        onChange(e.target.value)
-      }} style={{ ...inp, cursor: 'pointer' }}>
-        <option value="">{lang === 'ar' ? '-- اختر فئة --' : '-- Choisir une catégorie --'}</option>
-        {categories.map(cat => (
-          <option key={cat} value={cat}>{cat}</option>
-        ))}
-        <option value="__new__" style={{ color: '#818cf8', fontWeight: 700 }}>
-          ➕ {lang === 'ar' ? 'إضافة فئة جديدة' : 'Créer une nouvelle catégorie'}
-        </option>
-      </select>
-
-      {showAdd && (
-        <div style={{ display: 'flex', gap: 8, marginTop: 10 }}>
-          <input
-            value={newCat}
-            onChange={e => setNewCat(e.target.value)}
-            onKeyDown={e => e.key === 'Enter' && addCategory()}
-            placeholder={lang === 'ar' ? 'اسم الفئة الجديدة' : 'Nom de la nouvelle catégorie'}
-            style={{ ...inp, flex: 1 }}
-            autoFocus
-          />
-          <button type="button" onClick={addCategory}
-            style={{ background: 'linear-gradient(135deg,#6366f1,#8b5cf6)', color: 'white', padding: '0 20px', borderRadius: 12, border: 'none', cursor: 'pointer', fontFamily: 'Cairo,sans-serif', fontWeight: 700, whiteSpace: 'nowrap' }}>
-            ✓
-          </button>
-          <button type="button" onClick={() => { setShowAdd(false); setNewCat('') }}
-            style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.3)', color: '#fca5a5', padding: '0 14px', borderRadius: 12, cursor: 'pointer' }}>
-            ✕
-          </button>
-        </div>
-      )}
-    </div>
+    <select value={value} onChange={e => onChange(e.target.value)} style={inp}>
+      <option value="">{lang === 'ar' ? '-- اختر فئة --' : '-- Choisir une catégorie --'}</option>
+      {CATEGORIES.map(cat => (
+        <option key={cat} value={cat}>{cat}</option>
+      ))}
+    </select>
   )
 }
