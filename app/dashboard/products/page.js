@@ -358,6 +358,7 @@ export default function ProductsPage() {
                 )}
               </div>
             </div>
+            </div>
 
             {error && <div style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.3)', borderRadius: 10, padding: '12px 16px', margin: '16px 0', color: '#fca5a5', fontSize: 14 }}>⚠️ {error}</div>}
 
