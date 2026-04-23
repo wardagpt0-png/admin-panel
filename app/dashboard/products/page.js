@@ -320,10 +320,6 @@ export default function ProductsPage() {
                 <input value={form.reviewCount} onChange={e => setForm(f => ({ ...f, reviewCount: e.target.value }))} type="number" style={inp} />
               </div>
 
-              <div style={{ gridColumn: '1/-1' }}>
-                <label style={lbl}>{t.f_desc}</label>
-                <textarea value={form.description} onChange={e => setForm(f => ({ ...f, description: e.target.value }))} rows={3} style={{ ...inp, resize: 'vertical' }} />
-              </div>
 
               <div style={{ gridColumn: '1/-1' }}>
                 <label style={lbl}>{t.f_detailed}</label>
