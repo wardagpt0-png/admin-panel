@@ -2,7 +2,8 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import dynamic from 'next/dynamic'
+import dynamic from "next/dynamic"
+import CategorySelector from "../../components/CategorySelector"
 
 const RichEditor = dynamic(() => import('../../components/RichEditor'), { ssr: false })
 
