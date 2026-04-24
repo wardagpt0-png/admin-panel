@@ -176,7 +176,7 @@ export default function ProductsPage() {
   }
 
   const handlePublish = async () => {
-    if (!form.title || !form.price || !form.description) { setError(t.required); return }
+    if (!form.title || !form.price) { setError(t.required); return }
     setLoading(true); setError('')
     try {
       const res = await fetch('/api/publish', {
