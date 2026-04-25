@@ -26,7 +26,6 @@ export default function Dashboard() {
   const cards = [
     { href:'/dashboard/products', icon:'📦', title:t.products, desc:t.products_desc, color:'#6366f1' },
     { href:'/dashboard/blogs', icon:'📝', title:t.blogs, desc:t.blogs_desc, color:'#8b5cf6' },
-    { href:'/dashboard/orders', icon:'🛒', title:t.orders, desc:t.orders_desc, color:'#06b6d4' },
   ]
 
   return (
